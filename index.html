@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For Zoe 🌙</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ffb6d5;
+  --blue: #070c24;
+  --card: rgba(255, 255, 255, 0.95);
+  --green-heart: #8fcfa9;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at bottom, #121a3a, var(--blue));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  touch-action: manipulation;
+}
+
+/* Stars */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.7;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: fixed;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  opacity: 0.9;
+  animation: shoot 1.1s linear forwards;
+}
+
+@keyframes shoot {
+  from {
+    transform: translate(0, 0) rotate(-20deg);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-450px, 250px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* Floating hearts (wish) */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  color: var(--green-heart);
+  animation: floatHeart 4s ease-out forwards;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+}
+
+/* Card */
+.card {
+  position: relative;
+  background: var(--card);
+  padding: 30px 22px;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+h1 {
+  color: #070c24;
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.buttons {
+  position: relative;
+  height: 140px; /* Increased for mobile */
+  width: 100%;
+  margin-top: 20px;
+}
+
+button {
+  border: none;
+  padding: 16px 32px; /* Larger for touch */
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: var(--pink);
+  color: #333;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  min-width: 140px;
+}
+
+#noBtn {
+  background: #ddd;
+  color: #333;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  min-width: 140px;
+}
+
+/* Glow effect on Yes */
+.glow {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(255,182,213,0.6); }
+  50% { box-shadow: 0 0 30px rgba(255,182,213,0.9); }
+  100% { box-shadow: 0 0 0 rgba(255,182,213,0.6); }
+}
+
+/* Touch-specific styles */
+button:active {
+  transform: scale(0.98);
+}
+
+#yesBtn:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+#noBtn:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .card {
+    padding: 25px 18px;
+    border-radius: 20px;
+  }
+  
+  h1 { 
+    font-size: 1.6rem; 
+    margin-bottom: 8px;
+  }
+  
+  p { 
+    font-size: 0.95rem; 
+    margin-bottom: 20px;
+    padding: 0 5px;
+  }
+  
+  .buttons {
+    height: 150px;
+  }
+  
+  button {
+    padding: 18px 36px; /* Bigger for fat fingers */
+    font-size: 1.2rem;
+    min-width: 150px;
+  }
+  
+  #yesBtn {
+    font-size: 1.3rem;
+  }
+  
+  #noBtn {
+    font-size: 1.3rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 350px) {
+  .buttons {
+    height: 170px;
+  }
+  
+  button {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    min-width: 130px;
+  }
+  
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Prevent text selection */
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* No button movement animation */
+.moving {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+</style>
+</head>
+
+<body class="no-select">
+
+<div class="card" id="card">
+  <h1>Zoe 🌙</h1>
+  <p id="question">
+    Under a midnight sky full of stars…  
+    will you be my Valentine?
+  </p>
+
+  <div class="buttons" id="buttonArea">
+    <button id="yesBtn" class="glow">Yes ✨</button>
+    <button id="noBtn">No 👀</button>
+  </div>
+</div>
+
+<script>
+// Create static stars
+function createStars() {
+  for (let i = 0; i < 130; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(star);
+  }
+}
+
+// Create shooting stars
+function createShootingStars() {
+  setInterval(() => {
+    const star = document.createElement("div");
+    star.className = "shooting-star";
+    star.style.top = Math.random() * 50 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 1100);
+  }, 2800);
+}
+
+// DOM elements
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const buttonArea = document.getElementById("buttonArea");
+const text = document.getElementById("question");
+const card = document.getElementById("card");
+
+const noTexts = [
+  "Are you sure? 👀",
+  "The stars say otherwise ✨",
+  "Hmm… try again 🌙",
+  "That choice feels temporary 😌",
+  "Interesting… but no 🌌",
+  "The moon is watching 🌝",
+  "Last chance to change your mind 💫",
+  "The universe wants you to say yes 🌠"
+];
+
+let noCount = 0;
+let isYesClicked = false;
+let lastMoveTime = 0;
+const moveCooldown = 300; // 300ms cooldown between moves
+
+// Function to move No button away from cursor/finger
+function moveNo(event) {
+  if (isYesClicked) return;
+  
+  event.preventDefault();
+  
+  // Cooldown check to prevent rapid movements
+  const now = Date.now();
+  if (now - lastMoveTime < moveCooldown) {
+    return;
+  }
+  lastMoveTime = now;
+  
+  const areaRect = buttonArea.getBoundingClientRect();
+  const yesRect = yesBtn.getBoundingClientRect();
+  
+  // Get touch or mouse position
+  let clientX, clientY;
+  if (event.type.includes('touch')) {
+    clientX = event.touches[0].clientX;
+    clientY = event.touches[0].clientY;
+  } else {
+    clientX = event.clientX;
+    clientY = event.clientY;
+  }
+  
+  // Calculate distance from No button center
+  const noRect = noBtn.getBoundingClientRect();
+  const noCenterX = noRect.left + noRect.width / 2;
+  const noCenterY = noRect.top + noRect.height / 2;
+  const distance = Math.sqrt(
+    Math.pow(clientX - noCenterX, 2) + 
+    Math.pow(clientY - noCenterY, 2)
+  );
+  
+  // Move button if cursor/finger is close (within 80px)
+  if (distance < 80) {
+    let newX, newY;
+    let attempts = 0;
+    const maxAttempts = 20;
+    let foundGoodPosition = false;
+    
+    // Try to find a position that doesn't overlap with Yes button
+    do {
+      newX = Math.random() * (areaRect.width - noBtn.offsetWidth);
+      newY = Math.random() * (areaRect.height - noBtn.offsetHeight);
+      
+      // Convert to pixel values relative to button area
+      const newNoRight = newX + noBtn.offsetWidth;
+      const newNoBottom = newY + noBtn.offsetHeight;
+      
+      const yesX = yesRect.left - areaRect.left;
+      const yesY = yesRect.top - areaRect.top;
+      const yesRight = yesRect.right - areaRect.left;
+      const yesBottom = yesRect.bottom - areaRect.top;
+      
+      // Check if new position overlaps with Yes button
+      // Add 20px padding to avoid being too close
+      const overlaps = !(
+        newNoRight < (yesX - 20) || 
+        newX > (yesRight + 20) || 
+        newNoBottom < (yesY - 20) || 
+        newY > (yesBottom + 20)
+      );
+      
+      attempts++;
+      if (!overlaps) {
+        foundGoodPosition = true;
+        break;
+      }
+    } while (attempts < maxAttempts);
+    
+    // If we couldn't find a good position after many attempts, use any position
+    if (!foundGoodPosition) {
+      newX = Math.random() * (areaRect.width - noBtn.offsetWidth);
+      newY = Math.random() * (areaRect.height - noBtn.offsetHeight);
+    }
+    
+    // Apply new position with smooth transition
+    noBtn.classList.add('moving');
+    noBtn.style.left = `${newX}px`;
+    noBtn.style.top = `${newY}px`;
+    
+    // Update text
+    text.innerText = noTexts[noCount % noTexts.length];
+    noCount++;
+    
+    // Remove moving class after animation completes
+    setTimeout(() => {
+      noBtn.classList.remove('moving');
+    }, 400);
+  }
+}
+
+// Handle Yes button click
+function handleYesClick() {
+  if (isYesClicked) return;
+  isYesClicked = true;
+  
+  // Remove event listeners to prevent further interactions
+  noBtn.removeEventListener("mouseenter", moveNo);
+  noBtn.removeEventListener("mousemove", moveNo);
+  noBtn.removeEventListener("touchstart", moveNo);
+  noBtn.removeEventListener("touchmove", moveNo);
+  
+  // Heart burst animation
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💚";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "40vh";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, i * 150);
+  }
+  
+  // Shooting star wish
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      const star = document.createElement("div");
+      star.className = "shooting-star";
+      star.style.top = Math.random() * 40 + "vh";
+      star.style.left = "100vw";
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 1100);
+    }, i * 400);
+  }
+  
+  // Update card content
+  card.innerHTML = `
+    <h1>Lucky me 💚</h1>
+    <p style="font-size: 1.2rem; color: #2E7D32; margin: 20px 0;">
+      The stars aligned perfectly! ✨<br>
+      You made the right choice, Zoe!
+    </p>
+    <div style="font-size: 3rem; margin: 30px 0; animation: floatHeart 3s infinite alternate;">💚</div>
+    <p style="font-size: 0.9rem; color: #666;">
+      Thank you — you will not regret this.
+    </p>
+  `;
+  
+  // Change background to celebrate
+  document.body.style.background = "radial-gradient(circle at bottom, #1a2f5a, #0a1a3a)";
+  
+  // Add more stars for celebration
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.animation = "twinkle 1s infinite alternate";
+      document.body.appendChild(star);
+    }, i * 50);
+  }
+}
+
+// Initialize
+function init() {
+  createStars();
+  createShootingStars();
+  
+  // Event listeners for No button
+  noBtn.addEventListener("mouseenter", moveNo);
+  noBtn.addEventListener("mousemove", moveNo);
+  
+  // Touch events for mobile
+  noBtn.addEventListener("touchstart", moveNo, { passive: false });
+  noBtn.addEventListener("touchmove", moveNo, { passive: false });
+  
+  // Yes button click
+  yesBtn.addEventListener("click", handleYesClick);
+  yesBtn.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    handleYesClick();
+  }, { passive: false });
+  
+  // Initial position for No button (not overlapping with Yes)
+  setTimeout(() => {
+    const areaRect = buttonArea.getBoundingClientRect();
+    const yesRect = yesBtn.getBoundingClientRect();
+    
+    // Position No button on the right side, away from Yes
+    const newX = areaRect.width * 0.7 - noBtn.offsetWidth / 2;
+    const newY = areaRect.height * 0.3;
+    
+    noBtn.style.left = `${newX}px`;
+    noBtn.style.top = `${newY}px`;
+  }, 100);
+}
+
+// Start when page loads
+window.addEventListener('DOMContentLoaded', init);
+
+// Prevent context menu on mobile
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+// Prevent zoom on double tap
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+</script>
+
+</body>
+</html>
